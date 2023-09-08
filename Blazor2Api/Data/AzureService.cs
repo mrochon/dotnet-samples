@@ -17,7 +17,8 @@ namespace blazor.Data
         [AuthorizeForScopes(ScopeKeySection = "AzureApi:Scopes")]
         public async Task<string> GetRolesAsync()
         {
-            using var response = await _downstreamWebApi.CallWebApiForUserAsync("AzureApi").ConfigureAwait(false);
+            using var response = await _downstreamWebApi.CallWebApiForUserAsync("AzureApi",
+                (opts) => opts.RelativePath = "providers/Microsoft.Authorization/roleAssignments?api-version=2015-07-01").ConfigureAwait(false);
             return await response.Content.ReadAsStringAsync();
         }
     }

@@ -18,8 +18,8 @@ Welcome to your new app.
 
     protected override async Task OnInitializedAsync()
     {
-        var user = GraphService.GetUserAsync();
-        //var roles = await AzureService.GetRolesAsync();
+        var user = await GraphService.GetUserAsync();
+        var roles = await AzureService.GetRolesAsync();
         status = "Loaded";
     }
 }

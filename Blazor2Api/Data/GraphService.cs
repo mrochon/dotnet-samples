@@ -19,7 +19,8 @@ namespace blazor.Data
         public async Task<string> GetUserAsync()
         {
             // Call GraphApi to get user information
-            using var response = await _downstreamWebApi.CallWebApiForUserAsync("GraphApi").ConfigureAwait(false);
+            using var response = await _downstreamWebApi.CallWebApiForUserAsync("GraphApi",
+                (opts) => opts.RelativePath = "me").ConfigureAwait(false);
             return await response.Content.ReadAsStringAsync();
         }
     }
