@@ -1,0 +1,25 @@
+﻿@page "/"
+@using blazor.Data
+@inject GraphService GraphService
+@inject AzureService AzureService
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+<p>@status</p>
+
+@code {
+    private string status = "Loading...";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var user = GraphService.GetUserAsync();
+        //var roles = await AzureService.GetRolesAsync();
+        status = "Loaded";
+    }
+}
